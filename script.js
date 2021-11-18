@@ -12,7 +12,7 @@ start();
 function createBreedList(breedList) {
   document.getElementById("breed").innerHTML = `
   <select onchange="loadByBreed(this.value)">
-            <option>Choose a dog breed</option>
+            // <option>Choose a dog breed</option>
             ${Object.keys(breedList)
               .map(function (breed) {
                 return `<option>${breed}</option>`;
@@ -28,6 +28,11 @@ async function loadByBreed(breed) {
     const data = await response.json();
     console.log(data);
     createSlideshow(data.message);
+  } else {
+    var slideshow = document.getElementById("slideshow");
+    while (slideshow.hasChildNodes()) {
+      slideshow.removeChild(slideshow.firstChild);
+    }
   }
 }
 
@@ -35,29 +40,26 @@ function createSlideshow(images) {
   let currentImage = 0;
   clearInterval(timer);
   clearTimeout(deleteImageDelay);
-
   if (images.length > 1) {
-    document.getElementById("slideshow").innerHTML = `
-    <div class="slide" style="background-image: url('${images[0]}');"></div>
-    <div class="slide" style="background-image: url('${images[1]}');"></div>
+    slideshow.innerHTML = `
+    <div class="slide" id="slide" style="background-image: url('${images[0]}');"></div>
+    <div class="slide" id="slide" style="background-image: url('${images[1]}');"></div>
     `;
     currentImage += 2;
     if (images.length == 2) currentImage = 0;
     timer = setInterval(nextSlide, 3000);
   } else {
     document.getElementById("slideshow").innerHTML = `
-    <div class="slide" style="background-image: url('${images[0]}');"></div>
-    <div class="slide"></div>
+    <div class="slide" id="slide" style="background-image: url('${images[0]}');"></div>
+    <div class="slide" id="slide"></div>
     `;
   }
 
   function nextSlide() {
-    document
-      .getElementById("slideshow")
-      .insertAdjacentHTML(
-        "beforeend",
-        `<div class="slide" style="background-image: url('${images[currentImage]}')"></div>`
-      );
+    slideshow.insertAdjacentHTML(
+      "beforeend",
+      `<div class="slide" style="background-image: url('${images[currentImage]}')"></div>`
+    );
     deleteImageDelay = setTimeout(function () {
       document.querySelector(".slide").remove();
     }, 1000);

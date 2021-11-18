@@ -107,3 +107,10 @@ body {
   opacity: 1;
   transform: scale(1.08);
 }
+
+select {
+  background: #333;
+  color: #fff;
+  width: 250px;
+  height: 40px;
+}
