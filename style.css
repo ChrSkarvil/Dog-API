@@ -103,6 +103,19 @@ body {
   transition: all 0.9s ease-out;
 }
 
+.slide2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  opacity: 1;
+  width: auto;
+}
+
 .slide:nth-last-child(2) {
   opacity: 1;
   transform: scale(1.08);

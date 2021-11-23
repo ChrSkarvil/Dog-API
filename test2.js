@@ -1,3 +1,5 @@
+let timer;
+
 const prevBtn = document.querySelector(".prev-btn");
 const randomBtn = document.querySelector(".random-btn");
 const nextBtn = document.querySelector(".next-btn");
@@ -9,11 +11,10 @@ async function randomBreed() {
   showImage(data.message);
 }
 
-function showImage(images) {
-  let currentImage = 0;
+function showImage(data) {
   document.getElementById("slideshow").innerHTML = `
-    <div class="slide" id="slide" style="background-image: url('${images[0]}');"></div>
-    <div class="slide" id="slide"></div>
+    <div class="slide2" id="slide" style="background-image: url('${data}');"></div>
+    <div class="slide2" id="slide"></div>
     `;
 }
 
